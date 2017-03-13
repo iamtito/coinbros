@@ -11,6 +11,8 @@ app.use(bodyparser.urlencoded({
 }))
 app.use(bodyparser.json());
 
+app.set("view engine", "ejs");
+
 function coinbrosWallet(uinput, callback){
        //creating a new buffer 
     var input = new Buffer(uinput);
@@ -26,9 +28,26 @@ function coinbrosWallet(uinput, callback){
     callback(pk, addy);
 };
 
+request({
+    url: "https://btc-e.com/api/3/ticker/btc_usd",
+    json: true
+}, function(err, res, body){
+    price = body.btc_usd.last;
+});
+
 app.get("/", function(req, res){
     //using sendfile will open a page
-    res.sendfile(__dirname + "/index.html");
+    //Since we are using ejs now, getting rid of below
+    //res.sendfile(__dirname + "/index.html");
+    res.render("index", {lastPrice: price});
+});
+
+app.get("/broswallet", function(req, res){
+    res.render("index", {lastPrice: price});
+});
+
+app.get("/converter", function(req, res){
+    res.render("index", {lastPrice: price});
 });
 
 app.post("/wallet", function(req, res){
