@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CoinBros - Wallets made for you</title>
+        <link rel="stylesheet" href="../style.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid" id="navbar">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span> 
+                        </button>
+                        <a class="navbar-brand" href="/">Coin<span class="glyphicon glyphicon-btc" aria-hidden="true"></span>ros</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/wallet">My Wallet</a></li>
+                            <li><a href="/products">Products</a></li>
+                            <li><a href="/about">About CoinBros</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+<!--
+        <div class="row" id="navbar">
+            <div class="col-sm-3">
+                <h2 style="display:inline;">Coin<span class="glyphicon glyphicon-btc" aria-hidden="true"></span>ros</h2>
+            </div>
+            <div class="col-sm-6" style="border:1px solid black">
+                
+            </div>
+
+            <div class="col-sm-3">
+                
+            </div>
+        </div>
+-->
+        <h3> Hello <%= username %>, the price of BTC is $<%= ticker %></h3>
+        
+        <div class="row">
+            <div class="col-sm-4">
+                <div id="new_wallet"> 
+                    <h3>Grab a Wallet</h3>
+                    <p>Sign up and automatically get a wallet</p>
+                    <img src="../img/btc_icon.png" height="80px" width="80px">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div id="new_wallet"> 
+                    <h3>Start Sending/Receiving</h3>
+                    <p>Create your Address.</p>
+                    <img src="../img/btc_icon.png" height="80px" width="80px">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div id="new_wallet"> 
+                    <h3>Choose Payment Option</h3>
+                    <p>Choose how to get your money.</p>
+                    <img src="../img/btc_icon.png" height="80px" width="80px">
+                </div>
+            </div>
+        </div>       
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <blockquote>
+                <p>The issuing power should be taken from the banks and restored to the people, to whom it properly belongs.</p>
+                <footer><cite title="Source Title">Thomas Jefferson</cite></footer>
+                </blockquote>
+            </div>
+            <div class="col-sm-6">
+                <blockquote>
+                <p>New Money is Always Open</p>
+                <footer><cite title="Source Title">The People</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Address</td>
+                        <td>BTC</td>
+                    </tr>
+                </thead>
+                <tr class="success">
+                    <td>1</td>
+                    <td>Anthony Castillo</td>
+                    <td>Venore Avenue</td>
+                    <td>.045BTC</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>User Two</td>
+                    <td>Nice one</td>
+                </tr>
+                </table>   
+            </div>
+            <div class="col-sm-1">
+                <br><br><br><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>  
+            </div>
+            <div class="col-sm-5">
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Address</td>
+                        <td>BTC</td>
+                    </tr>
+                </thead>
+                <tr class="success">
+                    <td>1</td>
+                    <td>Anthony Castillo</td>
+                    <td>Venore Avenue</td>
+                    <td>.045BTC</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>User Two</td>
+                    <td>Nice one</td>
+                </tr>
+                </table>   
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row"> 
+            <div class="col-md-12">
+                <h3>Yonko Chat Application</h3>
+                <p>Lets talk about Bitcoin!</p>
+            
+                <section>
+                    <div id="message"></div>
+                    <div id="chat_input"></div>
+                </section>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Privacy</li>
+                    <li>Service</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

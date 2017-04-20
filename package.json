@@ -6,6 +6,7 @@
   "dependencies": {
     "bitcore-lib": "^0.13.19",
     "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
     "express": "^4.15.2",
     "request": "^2.81.0"
   },
@@ -14,5 +15,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }

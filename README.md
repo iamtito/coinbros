@@ -1,1 +1,3 @@
-# coinbros
+# coinbros 0.1v
+#
+#   CoinBros is an application that will allow us to easily create a bitcoin wallet. With this wallet CoinBros will allow you to easily transfer your own currency for BTC, which you can transfer to anyone in the world. The receiver can easily receive your BTC and retrieve it to their own currency via their payment option. CoinBros has Yonko, a powerful cognitive agent who has the ability to answer any questions on bitcoin that you may have.

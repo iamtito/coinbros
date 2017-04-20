@@ -1,64 +1,94 @@
-//Express is an easy way/better than http, easy execution and file sending
+//Declare app as a new instance of express server.
+//These are the includes for our codes
 var express = require("express");
-var app = express();
-var request = require("request");
+var app = express(); var PORT = 3000;
 var bodyparser = require("body-parser");
-//Adding bitcore libarary, we called it bitcore
 var bitcore = require("bitcore-lib");
+var request = require("request");
 
-app.use(bodyparser.urlencoded({
-    extended: true
-}))
+var postdata = [];
+
+//Used to load files from our public path, we supply the name/path as a parameter
+//app.js will always be parent of /public so we uses __dirname 
+function addPath(path){
+    if(path) return `${__dirname}/public/${path}`;
+    else return `${__dirname}/public`
+}
+
+//If we receive json data,
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(express.static(addPath()));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.use((req, res, next) => {
+    console.log(`${req.method} requested for ${req.url} - ${JSON.stringify(req.body)}`);
+    next();
+});
 
-app.set("view engine", "ejs");
 
-function coinbrosWallet(uinput, callback){
-       //creating a new buffer 
-    var input = new Buffer(uinput);
-    //creating a hash by giving it sha256
-    var hash = bitcore.crypto.Hash.sha256(input);
-    //BN means big number, then hashing it from buffer
-    var bn = bitcore.crypto.BN.fromBuffer(hash);
-    //pk variable for private key taking BN output.WalletImportFormat
-    var pk = new bitcore.PrivateKey(bn).toWIF();
-    var addy = new bitcore.PrivateKey(bn).toAddress();
-   // var boddy = "https://blockchain.info/address/" + addy + "?format=json";
-    //var show = body.total_sent;
-    callback(pk, addy);
+function getJsonApi(url, callback) {
+    request({
+        url: url,
+        json: true,
+    }, (error, response, body) => {
+        if(error)
+        {
+            console.log(error);
+        } else{
+            console.log(`Gathered ${response.statusCode}`);
+            return callback(body);
+        }
+    });
+}
+    
+var testObject = {
+    first: "Anthony",
+    last: "Castillo",
+    name: "Anthony Castillo"
 };
 
-request({
-    url: "https://btc-e.com/api/3/ticker/btc_usd",
-    json: true
-}, function(err, res, body){
-    price = body.btc_usd.last;
+
+
+//GET
+app.get("/", (req,res) => {
+    getJsonApi("https://btc-e.com/api/3/ticker/btc_usd", (body) => {
+        console.log(body.btc_usd.last);
+        res.render(addPath("views/index.html"), {username: testObject.name, ticker: body.btc_usd.last});
+    });
 });
 
-app.get("/", function(req, res){
-    //using sendfile will open a page
-    //Since we are using ejs now, getting rid of below
-    //res.sendfile(__dirname + "/index.html");
-    res.render("index", {lastPrice: price});
+app.get("/wallet", (req, res) => {
+    res.render(addPath("views/new_wallet.html"));
 });
 
-app.get("/broswallet", function(req, res){
-    res.render("index", {lastPrice: price});
+app.get("/login", (req, res) => {
+    res.writeHead({"Content-Type":"text/html"})
+    res.end("<h1>In Progress</h1>");
 });
 
-app.get("/converter", function(req, res){
-    res.render("index", {lastPrice: price});
+app.get("/signup", (req, res) => {
+    res.writeHead({"Content-Type":"text/html"})
+    res.end("<h1>In Progress</h1>");
 });
 
-app.post("/wallet", function(req, res){
-    var coinbros = req.body.coinbros;
-    console.log(coinbros);
-    coinbrosWallet(coinbros, function(priv, addr){
-    res.send("COINBROS wallet of " + coinbros + "<br>Address: " + addr + "<br> Private Key: " + priv + "<br> Total received: " )    
-    }); 
+app.get("/about", (req, res) => {
+    res.writeHead({"Content-Type":"text/html"})
+    res.end("<h1>In Progress</h1>");
 });
 
-//set the node listening port 
-app.listen(4321, function(){
-    console.log("working fine...");
+app.get("/products", (req, res) => {
+    res.writeHead({"Content-Type":"text/html"})
+    res.end("<h1>In Progress</h1>");
+});
+
+//POST\\
+app.post("/wallet", (req, res) => {
+    postdata.push(req.body)
+    res.json(postdata);
+});
+
+//APP LISTENING
+app.listen(PORT,"10.134.105.140", () => {
+    console.log(`CoinBros application running on port ${PORT}`);
 });

@@ -1,0 +1,16 @@
+.container-fluid
+{
+    background-color:#f4b841;
+    border:1px solid black;
+}
+
+#navbar
+{
+    background-color:gold;
+}
+
+#new_wallet
+{
+    text-align:center;
+    border:1px solid black;
+}
